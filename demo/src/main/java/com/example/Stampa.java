@@ -41,4 +41,12 @@ public class Stampa {
                 break;
         }
     }
+
+    public void pedidoProcesado(Ordine ordine) {
+        System.out.println("El pedido número " + ordine.getId() + " ha sido procesado correctamente.");
+    }
+
+    public void comienzoProceso(Ordine ordine) {
+        System.out.println("El pedido número " + ordine.getId() + " ha comenzado a procesarse.");
+    }
 }

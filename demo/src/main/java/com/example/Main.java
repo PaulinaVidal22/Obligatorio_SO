@@ -10,5 +10,9 @@ public class Main {
             stampa.hacerPedido();
             cantidadOrdine -= 1;
         }
+
+        while (!LaCosaNostra.getInstance().getOrdini().isEmpty()) {
+            LaCosaNostra.getInstance().procesarPedidoFIFO();
+        }
     }
 }
