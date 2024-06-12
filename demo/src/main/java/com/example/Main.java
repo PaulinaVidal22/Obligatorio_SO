@@ -11,8 +11,12 @@ public class Main {
             cantidadOrdine -= 1;
         }
 
-        while (!LaCosaNostra.getInstance().getOrdini().isEmpty()) {
+        // LaCosaNostra con política FIFO
+        /*while (!LaCosaNostra.getInstance().getOrdini().isEmpty()) {
             LaCosaNostra.getInstance().procesarPedidoFIFO();
-        }
+        }*/
+
+        // LaCosaNostra con política Round Robin
+        LaCosaNostra.getInstance().roundRobin();
     }
 }

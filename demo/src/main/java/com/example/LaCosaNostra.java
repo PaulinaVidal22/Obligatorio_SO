@@ -8,9 +8,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public final class LaCosaNostra extends Thread {
+// Administrador, CPU
+public final class LaCosaNostra {
     private Queue<Ordine> ordini;
-
+    public final long timeOut;
     private static LaCosaNostra instance;
 
     private LaCosaNostra() {
@@ -21,6 +22,7 @@ public final class LaCosaNostra extends Thread {
             ex.printStackTrace();
         }
         this.ordini = new LinkedList<Ordine>();
+        this.timeOut = 3000; // tiempo en milliseconds.
     }
 
     public static LaCosaNostra getInstance() {
@@ -41,6 +43,7 @@ public final class LaCosaNostra extends Thread {
 
     public void procesarPedidoFIFO() {
         Ordine ordine = ordini.poll();
+
         Stampa stampa = new Stampa();
         stampa.comienzoProceso(ordine);
 
@@ -55,9 +58,25 @@ public final class LaCosaNostra extends Thread {
         stampa.pedidoProcesado(ordine);
     }
 
-    public void run() {
-        while (true) {
-            procesarPedidoFIFO();
+    public void roundRobin() {
+        Stampa stampa = new Stampa();
+
+        while (!ordini.isEmpty()){
+            Ordine ordine = ordini.poll();
+            stampa.comienzoProceso(ordine);
+            ordine.run();
+
+            try {
+                Thread.sleep(timeOut); // Simula el tiempo de procesamiento
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            if (ordine.getTempoDiCottura() > 0) {
+                ordini.add(ordine);
+            } else {
+                stampa.pedidoProcesado(ordine);
+            }
         }
     }
 }

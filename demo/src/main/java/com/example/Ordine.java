@@ -12,10 +12,14 @@ public class Ordine {
     }
 
     public long getTempoDiCottura() {
-        return tempoDiCottura;
+        return piatto.getTempoDiCottura();
     }
 
     public int getId() {
         return id;
+    }
+
+    public void run() {
+        piatto.run();
     }
 }
