@@ -4,6 +4,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Restaurante {
     private ConcurrentLinkedQueue<Pedido> colaPedidos;
+    private static final int TIME_SLICE = 1000; // 1 segundo por time slice
 
     public Restaurante() {
         this.colaPedidos = new ConcurrentLinkedQueue<>();
@@ -19,13 +20,19 @@ public class Restaurante {
             Pedido pedido = colaPedidos.poll();
             if (pedido != null) {
                 System.out.println("Procesando " + pedido);
-                // Simula el tiempo de procesamiento
+                // Procesa el pedido por un time slice
+                pedido.procesar(TIME_SLICE);
                 try {
-                    Thread.sleep(1000); // 1 segundo por pedido
+                    Thread.sleep(TIME_SLICE); // Simula el tiempo de procesamiento
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                entregarPedido(pedido);
+                if (pedido.estaCompleto()) {
+                    entregarPedido(pedido);
+                } else {
+                    // Si no está completo, vuelve a añadirlo al final de la cola
+                    colaPedidos.add(pedido);
+                }
             }
         }
     }
@@ -39,6 +46,7 @@ public class Restaurante {
         return !colaPedidos.isEmpty();
     }
 }
+
 
 
 
