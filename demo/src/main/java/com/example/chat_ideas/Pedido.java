@@ -1,4 +1,4 @@
-package com.example;
+package com.example.chat_ideas;
 
 public class Pedido {
     private static int contador = 0;
