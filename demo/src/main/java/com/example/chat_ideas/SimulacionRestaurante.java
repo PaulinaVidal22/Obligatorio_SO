@@ -1,10 +1,10 @@
-package com.example;
+//package com.example.chat_ideas;
 
-import java.util.Random;
-import java.util.Scanner;
+//import java.util.Random;
+//import java.util.Scanner;
 
-public class SimulacionRestaurante {
-    public static void main(String[] args) {
+//public class SimulacionRestaurante {
+   /*  public static void main(String[] args) {
         Restaurante restaurante = new Restaurante();
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
@@ -62,8 +62,8 @@ public class SimulacionRestaurante {
         }
 
         scanner.close();
-    }
-}
+    }*/
+//}
 
 
 

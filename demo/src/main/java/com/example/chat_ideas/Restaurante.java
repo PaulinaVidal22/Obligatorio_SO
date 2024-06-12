@@ -1,4 +1,4 @@
-package com.example;
+package com.example.chat_ideas;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
