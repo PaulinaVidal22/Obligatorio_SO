@@ -1,9 +1,9 @@
 package com.example;
 
 public class Fettuccine implements IPiatto {
-    float tempoDiCottura = 30;
+    long tempoDiCottura = 5;
 
-    public float getTempoDiCottura() {
+    public long getTempoDiCottura() {
         return tempoDiCottura;
     }
 }
