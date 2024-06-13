@@ -22,12 +22,12 @@ public class Tiramisu extends Thread implements IPiatto {
         while ((tempoDiCottura > 0) && (elapsedTime < timeOut)) {
             elapsedTime += 1000;
             tempoDiCottura -= 1000;
-        }
 
-        try {
-            Thread.sleep(elapsedTime); // Simula el tiempo de procesamiento
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            try {
+                Thread.sleep(1000); // Simula el tiempo de procesamiento
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
