@@ -1,6 +1,7 @@
 package com.example;
 
 public class Tiramisu extends Thread implements IPiatto {
+    private final String nome = "tiramisu";
     long tempoDiCottura = 4000;
     final long timeOut = LaCosaNostra.getInstance().timeOut;
 
@@ -8,16 +9,11 @@ public class Tiramisu extends Thread implements IPiatto {
         return tempoDiCottura;
     }
 
-    public void run() {
-        /*long initialTime = System.currentTimeMillis();
-        long currentTime = initialTime;
-        long elapsedTime = 0;
+    public String getNome() {
+        return this.nome;
+    }
 
-        while (elapsedTime < timeOut && elapsedTime < tempoDiCottura) {
-            currentTime = System.currentTimeMillis();
-            elapsedTime = currentTime - initialTime;
-            tempoDiCottura = tempoDiCottura - elapsedTime;
-        }*/
+    public void run() {
         long elapsedTime = 0;
         while ((tempoDiCottura > 0) && (elapsedTime < timeOut)) {
             elapsedTime += 1000;

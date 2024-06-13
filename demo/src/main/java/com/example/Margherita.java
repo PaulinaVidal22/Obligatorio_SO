@@ -1,6 +1,7 @@
 package com.example;
 
 public class Margherita extends Thread implements IPiatto {
+    private final String nome = "pizza Margherita";
     long tempoDiCottura = 8000;
     final long timeOut = LaCosaNostra.getInstance().timeOut;
     long alForno = 4000;
@@ -8,6 +9,10 @@ public class Margherita extends Thread implements IPiatto {
 
     public long getTempoDiCottura() {
         return tempoDiCottura;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public void run() {
