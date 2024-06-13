@@ -65,13 +65,13 @@ public final class LaCosaNostra {
             Ordine ordine = ordini.poll();
             stampa.comienzoProceso(ordine);
             ordine.run();
-
+/*
             try {
                 Thread.sleep(timeOut); // Simula el tiempo de procesamiento
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+*/
             if (ordine.getTempoDiCottura() > 0) {
                 ordini.add(ordine);
             } else {
