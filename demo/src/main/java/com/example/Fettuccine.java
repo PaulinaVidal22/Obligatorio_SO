@@ -27,15 +27,16 @@ public class Fettuccine extends Thread implements IPiatto {
             elapsedTime += 1000;
             tempoDiCottura -= 1000;
             alDente = 0;
+
+            try {
+                Thread.sleep(1000); // Simula el tiempo de procesamiento
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         if (alDente == 0) alDenteDone = true;
 
-        try {
-            Thread.sleep(elapsedTime); // Simula el tiempo de procesamiento
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         // Se encarga de e/s
         /*while (elapsedTime < timeOut && elapsedTime < alDente) {

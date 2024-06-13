@@ -67,13 +67,13 @@ public final class LaCosaNostra {
 
             
             ordine.run();
-/*
+
             try {
-                Thread.sleep(timeOut); // Simula el tiempo de procesamiento
+                Thread.sleep(1000); // Simula el tiempo de procesamiento
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-*/
+
             if (ordine.getTempoDiCottura() > 0) {
                 ordini.add(ordine);
             } else {
