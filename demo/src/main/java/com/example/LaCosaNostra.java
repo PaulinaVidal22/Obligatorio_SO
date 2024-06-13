@@ -1,10 +1,5 @@
 package com.example;
 
-import java.time.Clock;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -64,8 +59,6 @@ public final class LaCosaNostra {
         while (!ordini.isEmpty()){
             Ordine ordine = ordini.poll();
             stampa.comienzoProceso(ordine);
-
-            
             ordine.run();
 
             try {
