@@ -64,6 +64,8 @@ public final class LaCosaNostra {
         while (!ordini.isEmpty()){
             Ordine ordine = ordini.poll();
             stampa.comienzoProceso(ordine);
+
+            
             ordine.run();
 /*
             try {

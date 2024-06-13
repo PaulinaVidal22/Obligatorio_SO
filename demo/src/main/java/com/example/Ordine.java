@@ -19,6 +19,10 @@ public class Ordine {
         return id;
     }
 
+    public IPiatto getPiatto() {
+        return this.piatto;
+    }
+
     public void run() {
         piatto.run();
     }

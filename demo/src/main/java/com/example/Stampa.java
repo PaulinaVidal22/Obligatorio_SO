@@ -47,6 +47,20 @@ public class Stampa {
     }
 
     public void comienzoProceso(Ordine ordine) {
-        System.out.println("El pedido número " + ordine.getId() + " ha comenzado a procesarse.");
+        Tiramisu tiramisu = new Tiramisu();
+        Fettuccine fettuccine = new Fettuccine();
+        long tempoDiCotturaIniziale = 0;
+
+        if (ordine.getPiatto().getClass().equals(tiramisu.getClass())) {
+            tempoDiCotturaIniziale = tiramisu.tempoDiCottura;
+        } else if (ordine.getPiatto().getClass().equals(fettuccine.getClass())) {
+            tempoDiCotturaIniziale = fettuccine.tempoDiCottura;
+        }
+
+        if (ordine.getTempoDiCottura() < tempoDiCotturaIniziale) {
+            System.out.println("El pedido número " + ordine.getId() + " ha comenzado a procesarse nuevamente.");
+        } else {
+            System.out.println("El pedido número " + ordine.getId() + " ha comenzado a procesarse.");
+        }
     }
 }
