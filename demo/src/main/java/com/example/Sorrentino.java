@@ -1,10 +1,10 @@
 package com.example;
 
-public class Fettuccine extends Thread implements IPiatto {
-    private final String nome = "fettuccine";
-    long tempoDiCottura = 6000;
+public class Sorrentino extends Thread implements IPiatto {
+    private final String nome = "sorrentino";
+    long tempoDiCottura = 3000;
     final long timeOut = LaCosaNostra.getInstance().timeOut;
-    long alDente = 4000;
+    long alDente = 2000;
     boolean alDenteDone = false;
 
     public long getTempoDiCottura() {

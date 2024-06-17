@@ -1,11 +1,11 @@
 package com.example;
 
-public class Fettuccine extends Thread implements IPiatto {
-    private final String nome = "fettuccine";
-    long tempoDiCottura = 6000;
+public class Margherita extends Thread implements IPiatto {
+    private final String nome = "pizza Margherita";
+    long tempoDiCottura = 8000;
     final long timeOut = LaCosaNostra.getInstance().timeOut;
-    long alDente = 4000;
-    boolean alDenteDone = false;
+    long alForno = 4000;
+    boolean alFornoDone = false;
 
     public long getTempoDiCottura() {
         return tempoDiCottura;
@@ -19,10 +19,10 @@ public class Fettuccine extends Thread implements IPiatto {
         long elapsedTime = 0;
 
         // Se encarga de e/s
-        while ((tempoDiCottura > 0) && (elapsedTime < timeOut) && (alDente > 0)) {
+        while ((tempoDiCottura > 0) && (elapsedTime < timeOut) && (alForno > 0)) {
             elapsedTime += 1000;
             tempoDiCottura -= 1000;
-            alDente -= 1000;
+            alForno -= 1000;
 
             try {
                 Thread.sleep(1000); // Simula el tiempo de procesamiento
@@ -32,10 +32,10 @@ public class Fettuccine extends Thread implements IPiatto {
         }
 
         // Se encarga exclusivamente del tiempo total y timeOut
-        while ((tempoDiCottura > 0) && (elapsedTime < timeOut) && alDenteDone) {
+        while ((tempoDiCottura > 0) && (elapsedTime < timeOut) && alFornoDone) {
             elapsedTime += 1000;
             tempoDiCottura -= 1000;
-            alDente = 0;
+            alForno = 0;
 
             try {
                 Thread.sleep(1000); // Simula el tiempo de procesamiento
@@ -44,14 +44,6 @@ public class Fettuccine extends Thread implements IPiatto {
             }
         }
 
-        if (alDente == 0) {
-            alDenteDone = true;
-            try {
-                Pentola.getInstance().consume(this);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                //e.printStackTrace();
-            }
-        }
+        if (alForno == 0) alFornoDone = true;
     }
 }
