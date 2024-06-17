@@ -1,11 +1,15 @@
 package com.example;
 
+import javax.swing.JProgressBar;
+
 public interface IPiatto {
     long tempoDiCottura = 0;
 
-    public long getTempoDiCottura();
+    long getTempoDiCottura();
     
-    public String getNome();
+    String getNome();
 
-    public void run();
+    void run();
+
+    void setProgressBar(JProgressBar progressBar);
 }
