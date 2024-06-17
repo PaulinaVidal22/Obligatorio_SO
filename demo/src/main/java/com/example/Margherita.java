@@ -1,11 +1,14 @@
 package com.example;
 
+import javax.swing.JProgressBar;
+
 public class Margherita extends Thread implements IPiatto {
     private final String nome = "pizza Margherita";
     long tempoDiCottura = 8000;
     final long timeOut = LaCosaNostra.getInstance().timeOut;
     long alForno = 4000;
     boolean alFornoDone = false;
+    private JProgressBar progressBar;
 
     public long getTempoDiCottura() {
         return tempoDiCottura;
@@ -13,6 +16,16 @@ public class Margherita extends Thread implements IPiatto {
 
     public String getNome() {
         return nome;
+    }
+
+    public void setProgressBar(JProgressBar progressBar){
+        this.progressBar = progressBar;
+    }
+
+    private void updateProgressBar(){
+        if (progressBar != null){
+            progressBar.setValue((int) (8000 - tempoDiCottura));
+        }
     }
 
     public void run() {
@@ -23,6 +36,7 @@ public class Margherita extends Thread implements IPiatto {
             elapsedTime += 1000;
             tempoDiCottura -= 1000;
             alForno -= 1000;
+            updateProgressBar();
 
             try {
                 Thread.sleep(1000); // Simula el tiempo de procesamiento
@@ -36,6 +50,7 @@ public class Margherita extends Thread implements IPiatto {
             elapsedTime += 1000;
             tempoDiCottura -= 1000;
             alForno = 0;
+            updateProgressBar();
 
             try {
                 Thread.sleep(1000); // Simula el tiempo de procesamiento
