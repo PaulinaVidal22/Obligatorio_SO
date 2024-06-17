@@ -1,11 +1,20 @@
-package com.example;
+package com.example.chat_ideas;
 
 import javax.swing.*;
+
+import com.example.Fettuccine;
+import com.example.IPiatto;
+import com.example.LaCosaNostra;
+import com.example.Margherita;
+import com.example.Ordine;
+import com.example.Sorrentino;
+import com.example.Tiramisu;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainFrame extends JFrame {
+public class MainFrameChat extends JFrame {
     private JTextField cantidadTextField;
     private JComboBox<String> tipoComboBox;
     private JButton agregarButton;
@@ -14,8 +23,8 @@ public class MainFrame extends JFrame {
     private DefaultListModel<Ordine> ordineListModel;
     private JList<Ordine> ordineJList;
 
-    public MainFrame() {
-        setTitle("Gestión de Pedidos del Restaurante");
+    public MainFrameChat() {
+        setTitle("La Cosa Nostra");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -24,19 +33,19 @@ public class MainFrame extends JFrame {
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new GridLayout(3, 2));
 
-        inputPanel.add(new JLabel("Cantidad de Pedidos:"));
-        cantidadTextField = new JTextField();
-        inputPanel.add(cantidadTextField);
-
-        inputPanel.add(new JLabel("Tipo de Plato:"));
+        inputPanel.add(new JLabel("Tipo de piatto:"));
         String[] tipos = {"Fettuccine", "Tiramisu", "Pizza Margherita", "Sorrentino"};
         tipoComboBox = new JComboBox<>(tipos);
         inputPanel.add(tipoComboBox);
 
-        agregarButton = new JButton("Agregar Pedido");
+        inputPanel.add(new JLabel("Cantidad a preparar:"));
+        cantidadTextField = new JTextField();
+        inputPanel.add(cantidadTextField);
+
+        agregarButton = new JButton("Agregar pedido");
         inputPanel.add(agregarButton);
 
-        iniciarButton = new JButton("Iniciar Procesamiento");
+        iniciarButton = new JButton("Iniciar procesamiento");
         inputPanel.add(iniciarButton);
 
         add(inputPanel, BorderLayout.NORTH);
@@ -114,12 +123,15 @@ public class MainFrame extends JFrame {
         }).start();
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
+    /*public static void main(String[] args) {
+        /*SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MainFrame().setVisible(true);
+                new MainFrameChat().setVisible(true);
             }
         });
-    }
+        MainFrameChat main = new MainFrameChat();
+        main.setVisible(true);
+        main.iniciarProcesamiento();
+    }*/
 }
