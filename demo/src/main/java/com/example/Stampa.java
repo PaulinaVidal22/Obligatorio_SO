@@ -20,8 +20,7 @@ public class Stampa {
             return scanner.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("Dígito inválido, ingrese un número entero por favor :)");
-            System.out.println("¿Cuántos procesos/pedidos desea ejecutar?");
-            return scanner.nextInt();
+            return 0;
         }
     }
 
