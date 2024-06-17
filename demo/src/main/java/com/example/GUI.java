@@ -9,26 +9,38 @@ public class GUI extends JFrame {
     private JPanel inputPanel;
     private JPanel ordiniPanel;
     private JTextField quantitaDaPreparare_text;
-    private JComboBox<String> menu_opBox;
     private JButton addPiatti_Button;
     private JButton effettuare_Button;
     private JList<Ordine> ordine_list;
     private DefaultListModel<Ordine> ordineListModel;
+    private String selectedPiatto;
 
     public GUI() {
         setSize(900, 600);
         setTitle("La Cosa Nostra");
-        setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Definimos input panel.
         this.inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(3, 2));
+        inputPanel.setLayout(new GridLayout(4, 2));
 
-        inputPanel.add(new JLabel("Tipo de piatto:"));
-        String[] piatti = {"Fettuccine", "Tiramisu", "Pizza Margherita", "Sorrentino"};
-        this.menu_opBox = new JComboBox<>(piatti);
-        inputPanel.add(this.menu_opBox);
+        inputPanel.add(new JLabel("Seleccione el tipo de plato:"));
+
+        // Panel para los botones de imágenes
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(2, 2));
+
+        JButton fettuccineButton = createButton("Fettuccine", "demo/src/main/java/com/example/imagenes/fettuccine.PNG");
+        JButton tiramisuButton = createButton("Tiramisu", "demo/src/main/java/com/example/imagenes/tiramisu.PNG");
+        JButton margheritaButton = createButton("Pizza Margherita", "demo/src/main/java/com/example/imagenes/pizza.PNG");
+        JButton sorrentinoButton = createButton("Sorrentino", "demo/src/main/java/com/example/imagenes/sorrentinos.PNG");
+
+        buttonPanel.add(fettuccineButton);
+        buttonPanel.add(tiramisuButton);
+        buttonPanel.add(margheritaButton);
+        buttonPanel.add(sorrentinoButton);
+
+        inputPanel.add(buttonPanel);
 
         inputPanel.add(new JLabel("Cantidad a preparar:"));
         this.quantitaDaPreparare_text = new JTextField();
@@ -37,14 +49,14 @@ public class GUI extends JFrame {
         this.addPiatti_Button = new JButton("Aggiungi ordine");
         inputPanel.add(addPiatti_Button);
 
-        this.effettuare_Button = new JButton("Avviare lèlaborazione");
+        this.effettuare_Button = new JButton("Avviare l'elaborazione");
         inputPanel.add(effettuare_Button);
 
         add(inputPanel, BorderLayout.NORTH);
 
         // Definimos ordini panel.
         this.ordiniPanel = new JPanel();
-        ordiniPanel.setLayout(new BoxLayout(ordiniPanel, BoxLayout.Y_AXIS)); // .Y_AXIS define que todos los componentes se agregan from top to bottom.
+        ordiniPanel.setLayout(new BoxLayout(ordiniPanel, BoxLayout.Y_AXIS));
         add(new JScrollPane(ordiniPanel), BorderLayout.CENTER);
 
         // Lista de pedidos.
@@ -52,14 +64,13 @@ public class GUI extends JFrame {
         this.ordine_list = new JList<>(ordineListModel);
         add(new JScrollPane(ordine_list), BorderLayout.EAST);
 
-        // Especificamos acción del botón para agragar ordine (pedidos).
+        // Especificamos acción del botón para agregar ordini (pedidos).
         addPiatti_Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int cantidad = Integer.parseInt(quantitaDaPreparare_text.getText());
-                String piatti = (String) menu_opBox.getSelectedItem();
                 for (int i = 0; i < cantidad; i++) {
-                    addOrdini(piatti);
+                    addOrdini(selectedPiatto);
                 }
             }
         });
@@ -71,9 +82,34 @@ public class GUI extends JFrame {
                 iniciarProcesamiento();
             }
         });
+
+        setVisible(true);
+    }
+
+    private JButton createButton(String name, String imagePath) {
+        ImageIcon originalIcon = new ImageIcon(imagePath);
+        Image originalImage = originalIcon.getImage();
+        Image scaledImage = originalImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH); // Escalamos la imagen
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+        JButton button = new JButton(name, scaledIcon);
+        button.setVerticalTextPosition(SwingConstants.BOTTOM);
+        button.setHorizontalTextPosition(SwingConstants.CENTER);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedPiatto = name;
+            }
+        });
+        return button;
     }
 
     private void addOrdini(String piatti) {
+        if (piatti == null) {
+            JOptionPane.showMessageDialog(this, "Seleccione un tipo de plato antes de agregar el pedido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         IPiatto piatto = null;
         switch (piatti) {
             case "Fettuccine":
@@ -102,7 +138,7 @@ public class GUI extends JFrame {
             piatto.setProgressBar(progressBar);
         }
 
-        revalidate(); // Se usa para actualizar la gui cuando se agregan o modifican los componentes del panel.
+        revalidate(); // Se usa para actualizar la GUI cuando se agregan o modifican los componentes del panel.
         repaint(); // Se usa para actualizar la apariencia visual del componente sin modificar su disposición.
     }
 
@@ -115,4 +151,12 @@ public class GUI extends JFrame {
         }).start();
     }
 
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new GUI();
+            }
+        });
     }
+}
