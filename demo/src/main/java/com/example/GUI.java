@@ -1,9 +1,13 @@
 package com.example;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class GUI extends JFrame {
     private JPanel inputPanel;
@@ -12,10 +16,14 @@ public class GUI extends JFrame {
     private JComboBox<String> menu_opBox;
     private JButton addPiatti_Button;
     private JButton effettuare_Button;
+    private JButton fettuccine_Button;
+    private JButton sorrentino_Button;
+    private JButton pizza_Button;
+    private JButton tiramisu_Button;
     private JList<Ordine> ordine_list;
     private DefaultListModel<Ordine> ordineListModel;
 
-    public GUI() {
+    public GUI() throws IOException {
         setSize(900, 600);
         setTitle("La Cosa Nostra");
         setVisible(true);
@@ -23,8 +31,42 @@ public class GUI extends JFrame {
 
         // Definimos input panel.
         this.inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(3, 2));
+        inputPanel.setLayout(new GridLayout(4, 2));
 
+       /* BufferedImage fettuccine_image = ImageIO.read(new File(".fettuccine.PNG.icloud"));
+        JLabel picLabel = new JLabel(new ImageIcon(fettuccine_image));
+        inputPanel.add(picLabel);
+
+        BufferedImage sorrentino_image = ImageIO.read(new File(".sorrentinos.PNG.icloud"));
+        JLabel picLabel2 = new JLabel(new ImageIcon(sorrentino_image));
+        inputPanel.add(picLabel2);
+/* 
+        // Botones de selección de piatti.
+        JPanel piattiSelezione = new JPanel();
+        piattiSelezione.setLayout(new BoxLayout(piattiSelezione, BoxLayout.X_AXIS));
+
+        BufferedImage fettuccine_image = ImageIO.read(new File(".fettuccine.PNG.icloud"));
+        fettuccine_Button = new JButton(new ImageIcon(fettuccine_image));
+        fettuccine_Button.setBorder(BorderFactory.createEmptyBorder());
+        piattiSelezione.add(fettuccine_Button);
+
+        BufferedImage sorrentino_image = ImageIO.read(new File(".sorrentinos.PNG.icloud"));
+        sorrentino_Button = new JButton(new ImageIcon(sorrentino_image));
+        sorrentino_Button.setBorder(BorderFactory.createEmptyBorder());
+        piattiSelezione.add(sorrentino_Button);
+
+        BufferedImage pizza_image = ImageIO.read(new File(".pizza.PNG.icloud"));
+        pizza_Button = new JButton(new ImageIcon(pizza_image));
+        pizza_Button.setBorder(BorderFactory.createEmptyBorder());
+        piattiSelezione.add(pizza_Button);
+
+        BufferedImage tiramisu_image = ImageIO.read(new File(".tiramisu.PNG.icloud"));
+        tiramisu_Button = new JButton(new ImageIcon(tiramisu_image));
+        tiramisu_Button.setBorder(BorderFactory.createEmptyBorder());
+        piattiSelezione.add(tiramisu_Button);
+
+
+        inputPanel.add(piattiSelezione);*/
         inputPanel.add(new JLabel("Tipo de piatto:"));
         String[] piatti = {"Fettuccine", "Tiramisu", "Pizza Margherita", "Sorrentino"};
         this.menu_opBox = new JComboBox<>(piatti);
