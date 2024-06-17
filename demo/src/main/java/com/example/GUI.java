@@ -19,38 +19,56 @@ public class GUI extends JFrame {
         setSize(900, 600);
         setTitle("La Cosa Nostra");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
 
         // Definimos input panel.
         this.inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(4, 2));
+        inputPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
 
-        inputPanel.add(new JLabel("Seleccione el tipo de plato:"));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        inputPanel.add(new JLabel("Seleccione el tipo de plato:"), gbc);
 
         // Panel para los botones de imágenes
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(2, 2));
+        buttonPanel.setLayout(new GridLayout(1, 4));
 
-        JButton fettuccineButton = createButton("Fettuccine", "demo/src/main/java/com/example/imagenes/fettuccine.PNG");
-        JButton tiramisuButton = createButton("Tiramisu", "demo/src/main/java/com/example/imagenes/tiramisu.PNG");
-        JButton margheritaButton = createButton("Pizza Margherita", "demo/src/main/java/com/example/imagenes/pizza.PNG");
-        JButton sorrentinoButton = createButton("Sorrentino", "demo/src/main/java/com/example/imagenes/sorrentinos.PNG");
+        JButton fettuccineButton = createButton("Fettuccine", "demo\\src\\main\\java\\com\\example\\imagenes\\fettuccine.PNG");
+        JButton tiramisuButton = createButton("Tiramisu", "demo\\src\\main\\java\\com\\example\\imagenes\\tiramisu.PNG");
+        JButton margheritaButton = createButton("Pizza Margherita", "demo\\src\\main\\java\\com\\example\\imagenes\\pizza.PNG");
+        JButton sorrentinoButton = createButton("Sorrentino", "demo\\src\\main\\java\\com\\example\\imagenes\\sorrentinos.PNG");
 
         buttonPanel.add(fettuccineButton);
         buttonPanel.add(tiramisuButton);
         buttonPanel.add(margheritaButton);
         buttonPanel.add(sorrentinoButton);
 
-        inputPanel.add(buttonPanel);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        inputPanel.add(buttonPanel, gbc);
 
-        inputPanel.add(new JLabel("Cantidad a preparar:"));
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        inputPanel.add(new JLabel("Cantidad a preparar:"), gbc);
+
         this.quantitaDaPreparare_text = new JTextField();
-        inputPanel.add(this.quantitaDaPreparare_text);
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        inputPanel.add(this.quantitaDaPreparare_text, gbc);
 
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
         this.addPiatti_Button = new JButton("Aggiungi ordine");
-        inputPanel.add(addPiatti_Button);
+        inputPanel.add(addPiatti_Button, gbc);
 
+        gbc.gridx = 1;
+        gbc.gridy = 2;
         this.effettuare_Button = new JButton("Avviare l'elaborazione");
-        inputPanel.add(effettuare_Button);
+        inputPanel.add(effettuare_Button, gbc);
 
         add(inputPanel, BorderLayout.NORTH);
 
@@ -64,7 +82,7 @@ public class GUI extends JFrame {
         this.ordine_list = new JList<>(ordineListModel);
         add(new JScrollPane(ordine_list), BorderLayout.EAST);
 
-        // Especificamos acción del botón para agregar ordini (pedidos).
+        // Especificamos acción del botón para agragar ordini (pedidos).
         addPiatti_Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -89,7 +107,7 @@ public class GUI extends JFrame {
     private JButton createButton(String name, String imagePath) {
         ImageIcon originalIcon = new ImageIcon(imagePath);
         Image originalImage = originalIcon.getImage();
-        Image scaledImage = originalImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH); // Escalamos la imagen
+        Image scaledImage = originalImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
         JButton button = new JButton(name, scaledIcon);
@@ -133,13 +151,15 @@ public class GUI extends JFrame {
 
             // Barra de progreso
             JProgressBar progressBar = new JProgressBar(0, (int) piatto.getTempoDiCottura());
-            ordiniPanel.add(new JLabel("Pedido " + ordine.getId() + ": " + piatto.getNome()));
-            ordiniPanel.add(progressBar);
+            JPanel progressPanel = new JPanel(new BorderLayout());
+            progressPanel.add(new JLabel("Pedido " + ordine.getId() + ": " + piatto.getNome()), BorderLayout.NORTH);
+            progressPanel.add(progressBar, BorderLayout.CENTER);
+            ordiniPanel.add(progressPanel);
             piatto.setProgressBar(progressBar);
         }
 
-        revalidate(); // Se usa para actualizar la GUI cuando se agregan o modifican los componentes del panel.
-        repaint(); // Se usa para actualizar la apariencia visual del componente sin modificar su disposición.
+        revalidate();
+        repaint();
     }
 
     public void iniciarProcesamiento() {
