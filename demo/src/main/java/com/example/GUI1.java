@@ -23,7 +23,6 @@ public class GUI1 extends JFrame {
 
         // Definimos input panel.
         this.inputPanel = new JPanel();
-
         inputPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -37,10 +36,10 @@ public class GUI1 extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 4));
 
-        JButton fettuccineButton = createButton("Fettuccine", "fettuccine.PNG");
-        JButton tiramisuButton = createButton("Tiramisu", "tiramisu.PNG");
-        JButton margheritaButton = createButton("Margherita", "pizza.PNG");
-        JButton sorrentinoButton = createButton("Sorrentinos", "sorrentinos.PNG");
+        JButton fettuccineButton = createButton("Fettuccine", "demo\\src\\main\\java\\com\\example\\imagenes\\fettuccine.PNG");
+        JButton tiramisuButton = createButton("Tiramisu", "demo\\src\\main\\java\\com\\example\\imagenes\\tiramisu.PNG");
+        JButton margheritaButton = createButton("Pizza Margherita", "demo\\src\\main\\java\\com\\example\\imagenes\\pizza.PNG");
+        JButton sorrentinoButton = createButton("Sorrentino", "demo\\src\\main\\java\\com\\example\\imagenes\\sorrentinos.PNG");
 
         buttonPanel.add(fettuccineButton);
         buttonPanel.add(tiramisuButton);
@@ -177,7 +176,7 @@ public class GUI1 extends JFrame {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        clearFrameAndShowImage("demo\\src\\main\\java\\com\\example\\imagenes\\exito3.gif"); // Cambia "finalImage.jpg" con la ruta de tu imagen final
+                        clearFrameAndShowImage("demo\\src\\main\\java\\com\\example\\imagenes\\exito3.gif"); 
                     }
                 });
             }
