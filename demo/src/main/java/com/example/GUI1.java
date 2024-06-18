@@ -177,7 +177,7 @@ public class GUI1 extends JFrame {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        clearFrameAndShowImage("demo\\src\\main\\java\\com\\example\\imagenes\\exito3.gif"); // Cambia "finalImage.jpg" con la ruta de tu imagen final
+                        clearFrameAndShowImage("exito3.gif"); // Cambia "finalImage.jpg" con la ruta de tu imagen final
                     }
                 });
             }
