@@ -212,7 +212,7 @@ public class GUI2 extends JFrame {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        inputPanel.add(new JLabel("Seleccione el tipo de plato:"), gbc);
+        inputPanel.add(new JLabel("Seleziona il tipo di piatto:"), gbc);
 
         // Panel para los botones de imágenes
         JPanel buttonPanel = new JPanel();
@@ -234,7 +234,7 @@ public class GUI2 extends JFrame {
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        inputPanel.add(new JLabel("Cantidad a preparar:"), gbc);
+        inputPanel.add(new JLabel("Quantità da preparare:"), gbc);
 
         this.quantitaDaPreparare_text = new JTextField();
         gbc.gridx = 1;
