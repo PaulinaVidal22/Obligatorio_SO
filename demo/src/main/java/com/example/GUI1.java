@@ -37,10 +37,10 @@ public class GUI1 extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 4));
 
-        JButton fettuccineButton = createButton("Fettuccine", "demo\\src\\main\\java\\com\\example\\imagenes\\fettuccine.PNG");
-        JButton tiramisuButton = createButton("Tiramisu", "demo\\src\\main\\java\\com\\example\\imagenes\\tiramisu.PNG");
-        JButton margheritaButton = createButton("Margherita", "demo\\src\\main\\java\\com\\example\\imagenes\\pizza.PNG");
-        JButton sorrentinoButton = createButton("Sorrentinos", "demo\\src\\main\\java\\com\\example\\imagenes\\sorrentinos.PNG");
+        JButton fettuccineButton = createButton("Fettuccine", "fettuccine.PNG");
+        JButton tiramisuButton = createButton("Tiramisu", "tiramisu.PNG");
+        JButton margheritaButton = createButton("Margherita", "pizza.PNG");
+        JButton sorrentinoButton = createButton("Sorrentinos", "sorrentinos.PNG");
 
         buttonPanel.add(fettuccineButton);
         buttonPanel.add(tiramisuButton);
@@ -188,7 +188,12 @@ public class GUI1 extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new GUI();
+                try {
+                    new GUI1();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
     }
