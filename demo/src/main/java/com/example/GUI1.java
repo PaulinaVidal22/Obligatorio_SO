@@ -188,7 +188,7 @@ public class GUI1 extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new GUI1();
+                new GUI();
             }
         });
     }
