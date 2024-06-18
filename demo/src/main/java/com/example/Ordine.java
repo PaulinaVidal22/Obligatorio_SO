@@ -24,4 +24,9 @@ public class Ordine {
     public void run() {
         piatto.run();
     }
+
+    @Override
+    public String toString() {
+        return "Pedido" + id;
+    }
 }
