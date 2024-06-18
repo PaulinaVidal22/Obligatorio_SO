@@ -11,7 +11,6 @@ public class GUI extends JFrame {
     private JTextField quantitaDaPreparare_text;
     private JButton addPiatti_Button;
     private JButton effettuare_Button;
-    private JList<Ordine> ordine_list;
     private DefaultListModel<Ordine> ordineListModel;
     private String selectedPiatto;
 
@@ -38,8 +37,8 @@ public class GUI extends JFrame {
 
         JButton fettuccineButton = createButton("Fettuccine", "demo\\src\\main\\java\\com\\example\\imagenes\\fettuccine.PNG");
         JButton tiramisuButton = createButton("Tiramisu", "demo\\src\\main\\java\\com\\example\\imagenes\\tiramisu.PNG");
-        JButton margheritaButton = createButton("Pizza Margherita", "demo\\src\\main\\java\\com\\example\\imagenes\\pizza.PNG");
-        JButton sorrentinoButton = createButton("Sorrentino", "demo\\src\\main\\java\\com\\example\\imagenes\\sorrentinos.PNG");
+        JButton margheritaButton = createButton("Margherita", "demo\\src\\main\\java\\com\\example\\imagenes\\pizza.PNG");
+        JButton sorrentinoButton = createButton("Sorrentinos", "demo\\src\\main\\java\\com\\example\\imagenes\\sorrentinos.PNG");
 
         buttonPanel.add(fettuccineButton);
         buttonPanel.add(tiramisuButton);
@@ -77,10 +76,8 @@ public class GUI extends JFrame {
         ordiniPanel.setLayout(new BoxLayout(ordiniPanel, BoxLayout.Y_AXIS));
         add(new JScrollPane(ordiniPanel), BorderLayout.CENTER);
 
-        // Lista de pedidos.
+        // Lista de pedidos (ahora no se muestra).
         this.ordineListModel = new DefaultListModel<>();
-        this.ordine_list = new JList<>(ordineListModel);
-        add(new JScrollPane(ordine_list), BorderLayout.EAST);
 
         // Especificamos acción del botón para agragar ordini (pedidos).
         addPiatti_Button.addActionListener(new ActionListener() {
@@ -162,11 +159,25 @@ public class GUI extends JFrame {
         repaint();
     }
 
+    private void clearFrameAndShowImage(String imagePath) {
+        getContentPane().removeAll();
+        JLabel imageLabel = new JLabel(new ImageIcon(imagePath));
+        add(imageLabel);
+        revalidate();
+        repaint();
+    }
+
     public void iniciarProcesamiento() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 LaCosaNostra.getInstance().roundRobin();
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        clearFrameAndShowImage("demo\\src\\main\\java\\com\\example\\imagenes\\exito3.gif"); // Cambia "finalImage.jpg" con la ruta de tu imagen final
+                    }
+                });
             }
         }).start();
     }
