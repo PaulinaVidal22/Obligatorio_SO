@@ -23,7 +23,6 @@ public class GUI1 extends JFrame {
 
         // Definimos input panel.
         this.inputPanel = new JPanel();
-
         inputPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -31,16 +30,16 @@ public class GUI1 extends JFrame {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        inputPanel.add(new JLabel("Seleccione el tipo de plato:"), gbc);
+        inputPanel.add(new JLabel("Seleziona il piatto:"), gbc);
 
         // Panel para los botones de imágenes
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 4));
 
-        JButton fettuccineButton = createButton("Fettuccine", "fettuccine.PNG");
-        JButton tiramisuButton = createButton("Tiramisu", "tiramisu.PNG");
-        JButton margheritaButton = createButton("Margherita", "pizza.PNG");
-        JButton sorrentinoButton = createButton("Sorrentinos", "sorrentinos.PNG");
+        JButton fettuccineButton = createButton("Fettuccine", "demo\\src\\main\\java\\com\\example\\imagenes\\fettuccine.PNG");
+        JButton tiramisuButton = createButton("Tiramisu", "demo\\src\\main\\java\\com\\example\\imagenes\\tiramisu.PNG");
+        JButton margheritaButton = createButton("Margherita", "demo\\src\\main\\java\\com\\example\\imagenes\\pizza.PNG");
+        JButton sorrentinoButton = createButton("Sorrentinos", "demo\\src\\main\\java\\com\\example\\imagenes\\sorrentinos.PNG");
 
         buttonPanel.add(fettuccineButton);
         buttonPanel.add(tiramisuButton);
@@ -53,7 +52,7 @@ public class GUI1 extends JFrame {
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        inputPanel.add(new JLabel("Cantidad a preparar:"), gbc);
+        inputPanel.add(new JLabel("Quantità da preparare:"), gbc);
 
         this.quantitaDaPreparare_text = new JTextField();
         gbc.gridx = 1;
@@ -151,7 +150,7 @@ public class GUI1 extends JFrame {
             // Barra de progreso
             JProgressBar progressBar = new JProgressBar(0, (int) piatto.getTempoDiCottura());
             JPanel progressPanel = new JPanel(new BorderLayout());
-            progressPanel.add(new JLabel("Pedido " + ordine.getId() + ": " + piatto.getNome()), BorderLayout.NORTH);
+            progressPanel.add(new JLabel("Ordine " + ordine.getId() + ": " + piatto.getNome()), BorderLayout.NORTH);
             progressPanel.add(progressBar, BorderLayout.CENTER);
             ordiniPanel.add(progressPanel);
             piatto.setProgressBar(progressBar);
@@ -177,6 +176,7 @@ public class GUI1 extends JFrame {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
+
                         clearFrameAndShowImage("exito3.gif"); // Cambia "finalImage.jpg" con la ruta de tu imagen final
                     }
                 });
