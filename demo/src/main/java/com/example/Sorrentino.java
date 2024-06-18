@@ -3,7 +3,7 @@ package com.example;
 import javax.swing.JProgressBar;
 
 public class Sorrentino extends Thread implements IPiatto {
-    private final String nome = "sorrentino";
+    private final String nome = "sorrentinos";
     long tempoDiCottura = 3000;
     final long timeOut = LaCosaNostra.getInstance().timeOut;
     long alDente = 2000;
