@@ -134,10 +134,10 @@ public class GUI1 extends JFrame {
             case "Tiramisu":
                 piatto = new Tiramisu();
                 break;
-            case "Pizza Margherita":
+            case "Margherita":
                 piatto = new Margherita();
                 break;
-            case "Sorrentino":
+            case "Sorrentinos":
                 piatto = new Sorrentino();
                 break;
         }
