@@ -22,9 +22,9 @@ public class Main {
         //LaCosaNostra.getInstance().roundRobin();
 
         // Añadiendo GUI
-        GUI guiiiiii;
+        GUI1 guiiiiii;
         try {
-            guiiiiii = new GUI();
+            guiiiiii = new GUI1();
             guiiiiii.setVisible(true);
             guiiiiii.iniciarProcesamiento();
         } catch (IOException e) {
