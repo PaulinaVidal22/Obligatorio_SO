@@ -1,9 +1,13 @@
 package com.example;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class GUI extends JFrame {
     private JPanel inputPanel;
@@ -14,7 +18,7 @@ public class GUI extends JFrame {
     private DefaultListModel<Ordine> ordineListModel;
     private String selectedPiatto;
 
-    public GUI() {
+    public GUI() throws IOException {
         setSize(900, 600);
         setTitle("La Cosa Nostra");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,6 +26,7 @@ public class GUI extends JFrame {
 
         // Definimos input panel.
         this.inputPanel = new JPanel();
+
         inputPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
