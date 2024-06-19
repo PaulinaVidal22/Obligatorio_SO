@@ -177,7 +177,7 @@ public class GUI1 extends JFrame {
                     @Override
                     public void run() {
 
-                        clearFrameAndShowImage("exito3.gif"); // Cambia "finalImage.jpg" con la ruta de tu imagen final
+                        clearFrameAndShowImage("exito3.gif"); 
                     }
                 });
             }
