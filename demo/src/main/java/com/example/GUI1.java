@@ -1,3 +1,7 @@
+/**
+ * @author Lucía Olviera, Belén Tellechea, Paulina Vidal
+ */
+
 package com.example;
 
 import javax.swing.*;
@@ -16,9 +20,9 @@ public class GUI1 extends JFrame {
     private String selectedPiatto;
 
     public GUI1() throws IOException {
-        setSize(900, 600);
-        setTitle("La Cosa Nostra");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(900, 600); //Tamaño de la ventana
+        setTitle("La Cosa Nostra"); //Titulo de la ventana
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Operación de cierre de la ventana
         setLayout(new BorderLayout());
 
         // Definimos input panel.
@@ -102,6 +106,14 @@ public class GUI1 extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Método para crear los botones de selección de platos.
+     * Se le añade ActionListener para manejar la acción de 
+     * selección del plato. 
+     * @param name nombre del botón
+     * @param imagePath ruta de la imagen para el botón
+     * @return botón con la imagen correspondiente y su nombre
+     */
     private JButton createButton(String name, String imagePath) {
         ImageIcon originalIcon = new ImageIcon(imagePath);
         Image originalImage = originalIcon.getImage();
@@ -120,6 +132,10 @@ public class GUI1 extends JFrame {
         return button;
     }
 
+    /**
+     * Método para agregar una orden al presionar el botón "Aggiungi ordine"
+     * @param piatti tipo de plato a agregar.
+     */
     private void addOrdini(String piatti) {
         if (piatti == null) {
             JOptionPane.showMessageDialog(this, "Seleccione un tipo de plato antes de agregar el pedido.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -160,6 +176,9 @@ public class GUI1 extends JFrame {
         repaint();
     }
 
+    /*
+     * Método para limpiar todos los componentes de la ventana actual. 
+     */
     private void clearFrameAndShowImage(String imagePath) {
         getContentPane().removeAll();
         JLabel imageLabel = new JLabel(new ImageIcon(imagePath));
@@ -168,6 +187,12 @@ public class GUI1 extends JFrame {
         repaint();
     }
 
+    /**
+     * Método que inicia un nuevo hilo para ejecutar el procesamiento
+     * de pedidos de LaCosaNostra mediante Round Robin. 
+     * Luego de completado este procesamiento, se actualiza la interfaz
+     * para mostrar una imagen. 
+     */
     public void iniciarProcesamiento() {
         new Thread(new Runnable() {
             @Override

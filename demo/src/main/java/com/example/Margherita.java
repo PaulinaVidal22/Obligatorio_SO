@@ -1,3 +1,7 @@
+/**
+ * @author Lucía Olviera, Belén Tellechea, Paulina Vidal
+ */
+
 package com.example;
 
 import javax.swing.JProgressBar;
@@ -10,24 +14,45 @@ public class Margherita extends Thread implements IPiatto {
     boolean alFornoDone = false;
     private JProgressBar progressBar;
 
+    /**
+     * @return tiempo de cocción de la pizza.
+     */
     public long getTempoDiCottura() {
         return tempoDiCottura;
     }
 
+    /**
+     * @return nombre del plato. 
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * Método para setear la barra de progreso de la GUI.
+     */
     public void setProgressBar(JProgressBar progressBar){
         this.progressBar = progressBar;
     }
 
+    /**
+     * Método para actualizar la barra de progreso de la GUI.
+     */
     private void updateProgressBar(){
         if (progressBar != null){
             progressBar.setValue((int) (8000 - tempoDiCottura));
         }
     }
 
+    /**
+     * Método que simula el procesamiento del pedido. 
+     * Primero, inicializa el tiempo transcurrido. Luego, el primer
+     * bucle se ejecuta mientras el tiempo de cocción y al forno sean 
+     * mayores a cero y no se haya superado el tiempo de timeout. Dentro 
+     * de él, se actualizan los tiempos correspondientemente al igual que
+     * la barra de progreso propia del pedido. 
+     * El segundo bucle se encarga de la cocción total. 
+     */
     public void run() {
         long elapsedTime = 0;
 
