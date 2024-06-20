@@ -1,3 +1,7 @@
+/**
+ * @author Lucía Olviera, Belén Tellechea, Paulina Vidal
+ */
+
 package com.example;
 
 import java.util.InputMismatchException;
@@ -14,6 +18,10 @@ public class Stampa {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Método para preguntar por consola la cantidad de pedidos a realizar. 
+     * @return número total de pedidos a realizar. 
+     */
     public int cantidadPedidos() {
         System.out.println("¿Cuántos procesos/pedidos desea ejecutar?");
         try {
@@ -24,6 +32,10 @@ public class Stampa {
         }
     }
 
+    /**
+     * Método que mediante consola le pide al usuario que seleccione el tipo de plato.
+     * Luego, lo agrega a la cola de pedidos. 
+     */
     public void hacerPedido() {
         System.out.println("Ingrese... \n 1 para ordenar unos deliciosos fettuccine \n 2 para deleitarse frente a nuestro maravilloso tiramisu \n 3 para degustar nuestra querida pizza Margherita \n 4 para asommbrarse con nuestros equisitos sorrentinos ");
         int opcionPedido = scanner.nextInt();
@@ -58,10 +70,18 @@ public class Stampa {
         }
     }
 
+    /**
+     * Método para imprimir que el pedido se ha procesado. 
+     * @param ordine orden procesada
+     */
     public void pedidoProcesado(Ordine ordine) {
         System.out.println("El pedido número " + ordine.getId() + " de " + ordine.getPiatto().getNome() + " ha sido procesado correctamente.");
     }
 
+    /**
+     * Método para imprimir que el pedido ha comenzado a procesarse. 
+     * @param ordine orden
+     */
     public void comienzoProceso(Ordine ordine) {
         Tiramisu tiramisu = new Tiramisu();
         Fettuccine fettuccine = new Fettuccine();

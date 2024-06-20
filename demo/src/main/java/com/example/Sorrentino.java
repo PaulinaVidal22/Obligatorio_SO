@@ -1,3 +1,7 @@
+/**
+ * @author Lucía Olviera, Belén Tellechea, Paulina Vidal
+ */
+
 package com.example;
 
 import javax.swing.JProgressBar;
@@ -10,24 +14,47 @@ public class Sorrentino extends Thread implements IPiatto {
     boolean alDenteDone = false;
     private JProgressBar progressBar;
 
+    /**
+     * @return tiempo de cocción de los sorrentinos
+     */
     public long getTempoDiCottura() {
         return tempoDiCottura;
     }
 
+    /**
+     * @return nombre del plato
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * Método que setea la barra de progreso de la GUI.
+     */
     public void setProgressBar(JProgressBar progressBar){
         this.progressBar = progressBar;
     }
 
+    /**
+     * Método que actualiza la barra de progreso de la GUI.
+     */
     private void updateProgressBar(){
         if (progressBar != null){
             progressBar.setValue((int) (3000 - tempoDiCottura));
         }
     }
 
+    /**
+     * Método que simula el procesamiento del pedido. 
+     * Primero, inicializa el tiempo transcurrido. Luego, el primer
+     * bucle se ejecuta mientras el tiempo de cocción y al dente sean 
+     * mayores a cero y no se haya superado el tiempo de timeout. Dentro 
+     * de él, se actualizan los tiempos correspondientemente al igual que
+     * la barra de progreso propia del pedido. 
+     * El segundo bucle se encarga de la cocción total. 
+     * Al marcar alDenteDone como verdadero, se consume el único recurso 
+     * de la olla para simular la utilización de un RSR. 
+     */
     public void run() {
         long elapsedTime = 0;
 

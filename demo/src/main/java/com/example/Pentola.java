@@ -1,3 +1,8 @@
+/**
+ * @author Lucía Olviera, Belén Tellechea, Paulina Vidal
+ * Fuentes : https://refactoring.guru/es/design-patterns/singleton 
+ */
+
 package com.example;
 
 import java.util.ArrayList;
@@ -9,16 +14,20 @@ public class Pentola {
     private static Pentola instance;
 
     private Pentola() {
-        // The following code emulates slow initialization.
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
         this.blocked = new ArrayList<IPiatto>();
-        this.alDente = 2000; // tiempo en milliseconds.
+        this.alDente = 2000; 
     }
 
+    /**
+     * Método para obtener la única instancia de Pentola.
+     * En caso de no haber una, la crea. 
+     * @return única instancia de Pentola.
+     */
     public static Pentola getInstance() {
         if (instance == null) {
             instance = new Pentola();
@@ -28,12 +37,19 @@ public class Pentola {
     
     Semaphore mutex = new Semaphore(1);
 
+    /**
+     * Método que simula el uso de un RSR (en este caso, Pentola). 
+     * Como dos pedidos no pueden estar en la olla a la vez, se 
+     * utiliza un semáforo de mutua exclusión. 
+     * @param piatto plato que necesita del recurso
+     * @throws InterruptedException
+     */
     public void consume(IPiatto piatto) throws InterruptedException {
         long elapsedTime = 0;
         blocked.add(piatto);
 
-        mutex.acquire();
-        blocked.remove(piatto);
+        mutex.acquire(); //Se toma el único recurso. En caso de estar utilizandose, espera a que se libere el espacio para ser ejecutado.
+        blocked.remove(piatto); //se saca el primer elemento que entró a consumir el recurso. 
 
         while (alDente > 0) {
             elapsedTime += 1000;
